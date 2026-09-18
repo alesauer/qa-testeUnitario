@@ -1,0 +1,154 @@
+{
+  "info": {
+    "name": "Sistema Login QA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Carregar Página de Login",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5555/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5555",
+          "path": [""]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code deve ser 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Contém o título esperado no HTML\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Sistema Login QA\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Login com Sucesso",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "usuario", "value": "admin", "type": "text" },
+            { "key": "senha", "value": "123456", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:5555/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5555",
+          "path": ["login"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code deve ser 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Mensagem de boas-vindas exibida\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Bem-vindo, admin!\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Login Falha - Senha Incorreta",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "usuario", "value": "admin", "type": "text" },
+            { "key": "senha", "value": "senha_errada", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:5555/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5555",
+          "path": ["login"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Como a rota faz redirect (302) para '/', o Postman segue automaticamente e recebe 200 da página index",
+              "pm.test(\"Status code final deve ser 200 após redirect\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Exibe mensagem de erro na tela\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Usuário ou senha inválidos.\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Login Falha - Usuário Inexistente",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "usuario", "value": "nao_existe", "type": "text" },
+            { "key": "senha", "value": "123", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:5555/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5555",
+          "path": ["login"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code final deve ser 200 após redirect\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Exibe mensagem de erro na tela\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Usuário ou senha inválidos.\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
