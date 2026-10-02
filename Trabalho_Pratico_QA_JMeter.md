@@ -141,15 +141,15 @@ Anexe na atividade do Google Classroom os seguintes arquivos:
 
 ---
 
-## ⚖️ 7. Critérios de Avaliação (100 Pontos)
+## ⚖️ 7. Critérios de Avaliação (15 Pontos)
 
 | Critério | Descrição | Pontuação |
 | :--- | :--- | :---: |
-| **Estrutura do Plano de Testes (.jmx)** | Configuração correta de Threads, HTTPS, POST /login, Parâmetros e Response Assertion. | **25 pts** |
-| **Execução e Coleta das Métricas** | Tabela comparativa preenchida corretamente com dados condizentes dos experimentos. | **25 pts** |
-| **Análise Crítica e Respostas** | Qualidade técnica e clareza nas respostas das questões de diagnóstico e gargalos. | **30 pts** |
-| **Evidências e Formatação** | Inclusão de prints legíveis, organização do relatório e envio no prazo. | **20 pts** |
-| **TOTAL** | | **100 pts** |
+| **Estrutura do Plano de Testes (.jmx)** | Configuração correta de Threads, HTTPS, POST /login, Parâmetros e Response Assertion. | **4,0 pts** |
+| **Execução e Coleta das Métricas** | Tabela comparativa preenchida corretamente com dados condizentes dos experimentos. | **4,0 pts** |
+| **Análise Crítica e Respostas** | Qualidade técnica e clareza nas respostas das questões de diagnóstico e gargalos. | **5,0 pts** |
+| **Evidências e Formatação** | Inclusão de prints legíveis, organização do relatório e envio no prazo. | **2,0 pts** |
+| **TOTAL** | | **15,0 pts** |
 
 ---
 
