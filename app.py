@@ -23,6 +23,10 @@ def init_db():
 def index():
     return render_template("login.html")
 
+@app.route("/documentacao", methods=["GET"])
+def documentacao():
+    return render_template("documentacao.html")
+
 @app.route("/login", methods=["POST"])
 def login():
     usuario = request.form.get("usuario")

@@ -1,8 +1,16 @@
 {
   "info": {
     "name": "Sistema Login QA",
+    "description": "Suíte de testes de API para https://qa.sauer.pro.br",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://qa.sauer.pro.br",
+      "type": "string"
+    }
+  ],
   "item": [
     {
       "name": "1. Carregar Página de Login",
@@ -10,10 +18,8 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:5555/",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5555",
+          "raw": "{{baseUrl}}/",
+          "host": ["{{baseUrl}}"],
           "path": [""]
         }
       },
@@ -36,7 +42,36 @@
       ]
     },
     {
-      "name": "2. Login com Sucesso",
+      "name": "2. Carregar Documentação",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/documentacao",
+          "host": ["{{baseUrl}}"],
+          "path": ["documentacao"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code deve ser 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Contém a seção de documentação\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Documentação\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Login com Sucesso",
       "request": {
         "method": "POST",
         "header": [],
@@ -48,10 +83,8 @@
           ]
         },
         "url": {
-          "raw": "http://localhost:5555/login",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5555",
+          "raw": "{{baseUrl}}/login",
+          "host": ["{{baseUrl}}"],
           "path": ["login"]
         }
       },
@@ -74,7 +107,7 @@
       ]
     },
     {
-      "name": "3. Login Falha - Senha Incorreta",
+      "name": "4. Login Falha - Senha Incorreta",
       "request": {
         "method": "POST",
         "header": [],
@@ -86,10 +119,8 @@
           ]
         },
         "url": {
-          "raw": "http://localhost:5555/login",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5555",
+          "raw": "{{baseUrl}}/login",
+          "host": ["{{baseUrl}}"],
           "path": ["login"]
         }
       },
@@ -99,7 +130,6 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "// Como a rota faz redirect (302) para '/', o Postman segue automaticamente e recebe 200 da página index",
               "pm.test(\"Status code final deve ser 200 após redirect\", function () {",
               "    pm.response.to.have.status(200);",
               "});",
@@ -113,7 +143,7 @@
       ]
     },
     {
-      "name": "4. Login Falha - Usuário Inexistente",
+      "name": "5. Login Falha - Usuário Inexistente",
       "request": {
         "method": "POST",
         "header": [],
@@ -125,10 +155,8 @@
           ]
         },
         "url": {
-          "raw": "http://localhost:5555/login",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5555",
+          "raw": "{{baseUrl}}/login",
+          "host": ["{{baseUrl}}"],
           "path": ["login"]
         }
       },

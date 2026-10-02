@@ -23,6 +23,11 @@ def test_pagina_login_carrega_com_sucesso(client):
     assert response.status_code == 200
     assert "Sistema Login QA" in response.get_data(as_text=True)
 
+def test_pagina_documentacao_carrega_com_sucesso(client):
+    response = client.get("/documentacao")
+    assert response.status_code == 200
+    assert "Documentação" in response.get_data(as_text=True)
+
 def test_login_sucesso(client):
     dados = {
         "usuario": "admin",

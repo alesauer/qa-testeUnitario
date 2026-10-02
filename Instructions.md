@@ -1,147 +1,92 @@
 # Instructions.md
 
-Guia prático e passo a passo para configurar o ambiente, executar a aplicação e rodar os testes.
+Guia prático e passo a passo para configuração do ambiente, execução da aplicação e execução dos testes de QA.
 
 ---
 
-## Pré-requisitos
+## 🌐 Ambientes da Aplicação
 
-- Windows com WSL2 habilitado (recomendado) ou outro SO compatível
-- Python 3.11 e `pip`
-- Docker & Docker Compose (opcional, recomendado)
-- Node.js + npm (opcional, para `newman`)
-
-### Instalar Docker Desktop (Windows)
-1. Baixe em: https://www.docker.com/products/docker-desktop/
-2. Execute o instalador e marque **Use WSL 2** quando solicitado.
-3. Reinicie a máquina se necessário.
-4. Abra o Docker Desktop e aguarde "Engine running".
+- **Produção / Online:** [https://qa.sauer.pro.br](https://qa.sauer.pro.br)
+- **Documentação & Laboratório JMeter:** [https://qa.sauer.pro.br/documentacao](https://qa.sauer.pro.br/documentacao)
+- **Local (Docker Compose):** `http://localhost:5555`
+- **Local (Python direto):** `http://localhost:5000`
 
 ---
 
-## Instalar dependências Python (local)
+## 1. Pré-requisitos
 
-No diretório do projeto, crie um virtualenv (recomendado) e instale as dependências:
+- Python 3.11+ e `pip`
+- Docker & Docker Compose (opcional para execução conteinerizada)
+- Java JRE/JDK 8+ (para executar o Apache JMeter)
+- Node.js + npm (opcional, caso queira rodar `newman`)
+
+---
+
+## 2. Instalação e Execução Local
+
+### Opção A: Executar com Python (Sem Docker)
 
 ```bash
+# 1. Criar e ativar o ambiente virtual
 python -m venv .venv
-source .venv/Scripts/activate    # Windows PowerShell/CMD use .venv\\Scripts\\activate
+.venv\Scripts\activate       # No Windows
+# source .venv/bin/activate  # No Linux/Mac
+
+# 2. Instalar dependências
 pip install -r requirements.txt
-```
 
----
-
-## Rodar a aplicação localmente (sem Docker)
-
-```bash
+# 3. Executar o servidor
 python app.py
-# ou
-flask run --host=0.0.0.0 --port=5000
 ```
-
-Acesse: http://localhost:5000 (ou 5000 via `docker-compose` mapeado para 5555 — veja abaixo).
+Acesse: [http://localhost:5000](http://localhost:5000)
 
 ---
 
-## Rodar com Docker (build e run)
+### Opção B: Executar via Docker Compose
 
 ```bash
-docker build -t sistema-login-qa .
-docker run -p 5555:5000 --rm sistema-login-qa
+docker compose up -d --build
 ```
-
-Isso expõe a aplicação em http://localhost:5555
+Acesse: [http://localhost:5555](http://localhost:5555)
 
 ---
 
-## Rodar com Docker Compose
+## 3. Execução dos Testes Automatizados (Pytest)
 
-O projeto já contém `docker-compose.yml` que mapeia a porta `5555` para a porta `5000` do container.
+Para rodar todos os testes de unidade e integração:
 
 ```bash
-docker-compose up --build
+pytest -v
 ```
-
-Acesse: http://localhost:5555/
 
 ---
 
-## Executar os testes (Pytest)
+## 4. Testes de Carga e Stress com Apache JMeter
 
-```bash
-pytest -q
-```
+O projeto já inclui um plano pronto: `teste_login_jmeter.jmx`.
 
-Observação: os testes usam/geram `banco.db`. O fixture `client` remove `banco.db` ao final dos testes locais.
+1. Abra o Apache JMeter (`bin/jmeter.bat` no Windows).
+2. Vá em **File ➔ Open** e selecione o arquivo `teste_login_jmeter.jmx`.
+3. O plano já vem configurado para testar o endpoint `https://qa.sauer.pro.br/login`.
+4. Clique no botão verde **▶ (Start)** para iniciar a execução.
+5. Acompanhe os resultados nos ouvintes:
+   - **View Results Tree:** Ver detalhes de cada requisição.
+   - **Summary Report:** Métricas de latência média, vazão (throughput) e taxa de erros.
 
 ---
 
-## Executar coleção Postman com Newman (opcional)
+## 5. Testes de API com Postman / Newman
 
-Instale o `newman` globalmente (se desejar rodar a suíte Postman a partir da CLI):
+Execute a coleção via CLI com o Newman:
 
 ```bash
 npm install -g newman
 newman run test_postman.json --delay-request 50
 ```
 
-Os requests da coleção usam `http://localhost:5555` por padrão.
-
 ---
 
-## Variáveis de ambiente e configurações úteis
+## 6. Credenciais de Teste
 
-- `SECRET_KEY` (recomendado): não comitar `app.secret_key` em produção. Você pode exportar:
-
-```bash
-set SECRET_KEY="sua_chave_segura"        # Windows
-export SECRET_KEY="sua_chave_segura"     # Linux/Mac
-```
-
-No `app.py` pode-se preferir buscar `os.environ.get('SECRET_KEY')`.
-
----
-
-## Reset / seed do banco
-
-Para resetar o banco localmente:
-
-```bash
-rm banco.db            # ou del banco.db no Windows
-python -c "from app import init_db; init_db()"
-```
-
-O `init_db()` cria a tabela `usuarios` e insere o usuário padrão `admin` com senha `123456` (apenas para QA/demonstração).
-
----
-
-## Notas de segurança e recomendações
-
-- Não armazene senhas em texto plano; use hashing (`werkzeug.security` ou `bcrypt`).
-- Não versionar `banco.db`; adicione-o ao `.gitignore`.
-- Use `SECRET_KEY` via variável de ambiente para sessões/flash messages.
-- Para ambiente de produção, avalie usar migrações (Alembic/Flask-Migrate) e um banco mais robusto.
-
----
-
-Se quiser, posso atualizar automaticamente o `app.py` para usar hashing de senha, adicionar `.gitignore` e executar os testes aqui.
-# Instructions.md
-
-Guia prático e passo a passo para configuração do ambiente, execução da aplicação e testes.
-
----
-
-## 1. Pré-requisito: Instalação do Docker
-
-Se você ainda não possui o Docker e o Docker Compose instalados na sua máquina, siga as instruções para o seu sistema operacional:
-
-### Windows
-1. Baixe o instalador oficial do **Docker Desktop**:
-   - [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
-2. Execute o arquivo `.exe` baixado e siga as instruções na tela.
-3. Certifique-se de marcar a opção **Use WSL 2** durante a instalação.
-4. Reinicie o computador após a conclusão da instalação.
-5. Abra o aplicativo **Docker Desktop** e aguarde até que o status no canto inferior esquerdo indique "Engine running".
-
-
-
+- **Usuário:** `admin`
+- **Senha:** `123456`
