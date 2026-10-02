@@ -398,32 +398,56 @@ curl -X POST https://qa.sauer.pro.br/login -d "usuario=admin&senha=senha_errada"
       <!-- PASSO A PASSO SEQUENCIAL DETALHADO -->
       <div class="space-y-10">
 
-        <!-- PASSO 0: ABERTURA DO JMETER E GUIA DE INSTALAÇÃO -->
+        <!-- PASSO 0: ABERTURA DO JMETER, GUIA DE INSTALAÇÃO E MINI CURSO -->
         <div class="border border-slate-200 rounded-2xl bg-white p-6 shadow-sm">
           <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
             <div class="flex items-center gap-3">
               <span class="w-7 h-7 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center">0</span>
-              <h3 class="text-lg font-bold text-slate-900">Passo 0: Download, Instalação e Abertura do Apache JMeter</h3>
+              <h3 class="text-lg font-bold text-slate-900">Passo 0: Instalação, Mini Curso e Execução do JMeter</h3>
             </div>
-            <a href="/instalacao-jmeter" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-red-600 hover:bg-red-700 shadow-sm transition">
-              <span>📥</span> Abrir Guia Completo de Instalação e Download do JMeter ➔
-            </a>
+            
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <a href="/instalacao-jmeter" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-red-600 hover:bg-red-700 shadow-sm transition">
+                <span>📥</span> Abrir Guia Completo de Instalação e Download do JMeter ➔
+              </a>
+              <a href="/curso-jmeter" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition">
+                <span>🎓</span> Mini Curso Prático de Uso do JMeter (Foco no Laboratório) ➔
+              </a>
+            </div>
           </div>
 
           <div class="space-y-4 text-sm text-slate-600">
-            <!-- BANNER DE DESTAQUE PARA O GUIA DE INSTALAÇÃO -->
-            <div class="p-4 rounded-xl bg-red-50 border border-red-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div>
-                <div class="font-bold text-red-900 text-sm flex items-center gap-1.5">
-                  <span>⚡</span> Ainda não tem o JMeter ou o Java instalados no seu computador?
+            <!-- BANNERS DE DESTAQUE -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <!-- BANNER 1: INSTALACAO -->
+              <div class="p-4 rounded-xl bg-red-50 border border-red-200 flex flex-col justify-between gap-3">
+                <div>
+                  <div class="font-bold text-red-900 text-xs flex items-center gap-1.5">
+                    <span>⚡</span> 1. Ainda não tem o JMeter ou Java?
+                  </div>
+                  <p class="text-[11px] text-red-700 mt-1">
+                    Passo a passo ilustrado para baixar o Java, o arquivo ZIP do JMeter e descompactar.
+                  </p>
                 </div>
-                <p class="text-xs text-red-700 mt-1">
-                  Preparamos uma página exclusiva com o passo a passo ilustrado para baixar o Java, o arquivo ZIP do JMeter e descompactá-lo sem complicação.
-                </p>
+                <a href="/instalacao-jmeter" target="_blank" class="inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold text-red-700 bg-white border border-red-300 hover:bg-red-100 transition shadow-xs">
+                  Guia de Instalação ➔
+                </a>
               </div>
-              <a href="/instalacao-jmeter" target="_blank" class="shrink-0 inline-flex items-center gap-1 px-3.5 py-2 rounded-lg text-xs font-bold text-red-700 bg-white border border-red-300 hover:bg-red-100 transition shadow-xs">
-                Ver Passo a Passo ➔
-              </a>
+
+              <!-- BANNER 2: MINI CURSO -->
+              <div class="p-4 rounded-xl bg-indigo-50 border border-indigo-200 flex flex-col justify-between gap-3">
+                <div>
+                  <div class="font-bold text-indigo-900 text-xs flex items-center gap-1.5">
+                    <span>🎓</span> 2. Quer aprender a operar o JMeter?
+                  </div>
+                  <p class="text-[11px] text-indigo-700 mt-1">
+                    Mini curso detalhado explicando cada menu, componente e como interpretar os resultados no nosso laboratório.
+                  </p>
+                </div>
+                <a href="/curso-jmeter" target="_blank" class="inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-bold text-indigo-700 bg-white border border-indigo-300 hover:bg-indigo-100 transition shadow-xs">
+                  Acessar Mini Curso do JMeter ➔
+                </a>
+              </div>
             </div>
 
             <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">

@@ -100,7 +100,36 @@
       ]
     },
     {
-      "name": "4. Login com Sucesso",
+      "name": "4. Carregar Mini Curso do JMeter",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/curso-jmeter",
+          "host": ["{{baseUrl}}"],
+          "path": ["curso-jmeter"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code deve ser 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Contém o mini curso do JMeter\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Curso\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Login com Sucesso",
       "request": {
         "method": "POST",
         "header": [],
@@ -136,7 +165,7 @@
       ]
     },
     {
-      "name": "5. Login Falha - Senha Incorreta",
+      "name": "6. Login Falha - Senha Incorreta",
       "request": {
         "method": "POST",
         "header": [],
@@ -172,7 +201,7 @@
       ]
     },
     {
-      "name": "6. Login Falha - Usuário Inexistente",
+      "name": "7. Login Falha - Usuário Inexistente",
       "request": {
         "method": "POST",
         "header": [],

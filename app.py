@@ -31,6 +31,10 @@ def documentacao():
 def instalacao_jmeter():
     return render_template("instalacao_jmeter.html")
 
+@app.route("/curso-jmeter", methods=["GET"])
+def curso_jmeter():
+    return render_template("curso_jmeter.html")
+
 @app.route("/login", methods=["POST"])
 def login():
     usuario = request.form.get("usuario")
