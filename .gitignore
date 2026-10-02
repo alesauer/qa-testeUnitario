@@ -16,3 +16,7 @@ ENV/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Database
+banco.db
+*.db

@@ -398,18 +398,38 @@ curl -X POST https://qa.sauer.pro.br/login -d "usuario=admin&senha=senha_errada"
       <!-- PASSO A PASSO SEQUENCIAL DETALHADO -->
       <div class="space-y-10">
 
-        <!-- PASSO 0: ABERTURA DO JMETER -->
+        <!-- PASSO 0: ABERTURA DO JMETER E GUIA DE INSTALAÇÃO -->
         <div class="border border-slate-200 rounded-2xl bg-white p-6 shadow-sm">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="w-7 h-7 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center">0</span>
-            <h3 class="text-lg font-bold text-slate-900">Passo 0: Abrindo o Apache JMeter</h3>
+          <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <span class="w-7 h-7 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center">0</span>
+              <h3 class="text-lg font-bold text-slate-900">Passo 0: Download, Instalação e Abertura do Apache JMeter</h3>
+            </div>
+            <a href="/instalacao-jmeter" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-red-600 hover:bg-red-700 shadow-sm transition">
+              <span>📥</span> Abrir Guia Completo de Instalação e Download do JMeter ➔
+            </a>
           </div>
 
           <div class="space-y-4 text-sm text-slate-600">
+            <!-- BANNER DE DESTAQUE PARA O GUIA DE INSTALAÇÃO -->
+            <div class="p-4 rounded-xl bg-red-50 border border-red-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <div class="font-bold text-red-900 text-sm flex items-center gap-1.5">
+                  <span>⚡</span> Ainda não tem o JMeter ou o Java instalados no seu computador?
+                </div>
+                <p class="text-xs text-red-700 mt-1">
+                  Preparamos uma página exclusiva com o passo a passo ilustrado para baixar o Java, o arquivo ZIP do JMeter e descompactá-lo sem complicação.
+                </p>
+              </div>
+              <a href="/instalacao-jmeter" target="_blank" class="shrink-0 inline-flex items-center gap-1 px-3.5 py-2 rounded-lg text-xs font-bold text-red-700 bg-white border border-red-300 hover:bg-red-100 transition shadow-xs">
+                Ver Passo a Passo ➔
+              </a>
+            </div>
+
             <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <div class="font-bold text-slate-800 mb-2">Como abrir o Apache JMeter no seu computador:</div>
-              <ol class="list-decimal ml-5 space-y-2 text-xs">
-                <li>Abra a pasta onde você descompactou o Apache JMeter (ex: <code>apache-jmeter-5.6.x</code>).</li>
+              <div class="font-bold text-slate-800 mb-2 text-xs">Resumo Rápido para quem já tem o JMeter descompactado:</div>
+              <ol class="list-decimal ml-5 space-y-1.5 text-xs">
+                <li>Abra a pasta onde você descompactou o Apache JMeter (ex: <code>apache-jmeter-5.6.3</code>).</li>
                 <li>Entre na pasta <code class="font-bold text-blue-700">bin</code>.</li>
                 <li>No <strong>Windows</strong>: Dê duplo clique no arquivo <code class="font-bold text-emerald-700">jmeter.bat</code> (ou no Linux/Mac execute <code>./jmeter.sh</code> no terminal).</li>
                 <li>Aguarde alguns segundos e a interface gráfica do JMeter será exibida.</li>

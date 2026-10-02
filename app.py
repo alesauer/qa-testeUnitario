@@ -27,6 +27,10 @@ def index():
 def documentacao():
     return render_template("documentacao.html")
 
+@app.route("/instalacao-jmeter", methods=["GET"])
+def instalacao_jmeter():
+    return render_template("instalacao_jmeter.html")
+
 @app.route("/login", methods=["POST"])
 def login():
     usuario = request.form.get("usuario")

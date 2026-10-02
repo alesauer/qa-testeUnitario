@@ -71,7 +71,36 @@
       ]
     },
     {
-      "name": "3. Login com Sucesso",
+      "name": "3. Carregar Guia de Instalação do JMeter",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/instalacao-jmeter",
+          "host": ["{{baseUrl}}"],
+          "path": ["instalacao-jmeter"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code deve ser 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Contém o guia de instalação\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"JMeter\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Login com Sucesso",
       "request": {
         "method": "POST",
         "header": [],
@@ -107,7 +136,7 @@
       ]
     },
     {
-      "name": "4. Login Falha - Senha Incorreta",
+      "name": "5. Login Falha - Senha Incorreta",
       "request": {
         "method": "POST",
         "header": [],
@@ -143,7 +172,7 @@
       ]
     },
     {
-      "name": "5. Login Falha - Usuário Inexistente",
+      "name": "6. Login Falha - Usuário Inexistente",
       "request": {
         "method": "POST",
         "header": [],

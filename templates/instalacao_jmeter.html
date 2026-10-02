@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Instalação e Execução do Apache JMeter | QA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    code, pre { font-family: 'Fira Code', monospace; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="h-9 w-9 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold shadow-md shadow-red-500/20">
+          ⚡
+        </div>
+        <div>
+          <a href="/documentacao" class="font-bold text-slate-900 text-lg hover:text-blue-600 transition">Guia de Instalação do Apache JMeter</a>
+          <span class="hidden sm:inline-block text-xs font-semibold px-2 py-0.5 rounded bg-red-100 text-red-800 ml-2">Passo a Passo para Alunos</span>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <a href="/documentacao#exercicio-01" class="inline-flex items-center px-3.5 py-1.5 rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 shadow-sm transition">
+          <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Voltar ao Exercício 01
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="bg-gradient-to-b from-red-900 via-slate-900 to-slate-950 text-white py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-400/20 text-red-300 text-xs font-semibold mb-4">
+        <span>⚡</span> Roteiro 100% Prático para Iniciantes
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+        Como Baixar, Descompactar e Abrir o Apache JMeter
+      </h1>
+      <p class="text-slate-300 text-base max-w-2xl mx-auto font-light leading-relaxed mb-6">
+        O Apache JMeter <strong>não precisa de instalação tradicional</strong>: basta ter o Java na máquina, baixar o arquivo compactado <code>.zip</code>, extrair em uma pasta e executar!
+      </p>
+
+      <!-- BOTÕES DE DOWNLOAD DIRETO -->
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="https://jmeter.apache.org/download_jmeter.cgi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm bg-red-600 hover:bg-red-500 text-white shadow-lg shadow-red-600/30 transition transform hover:-translate-y-0.5">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Página Oficial de Download do JMeter
+        </a>
+        <a href="https://adoptium.net/temurin/releases/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 transition">
+          <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          Baixar Java (JRE/JDK 17 ou 21)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN INSTRUCTIONS CONTAINER -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 space-y-12">
+
+    <!-- ETAPA 1: O PRÉ-REQUISITO JAVA -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="h-8 w-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-base">1</div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Etapa 1: Verificar se você tem o Java instalado</h2>
+      </div>
+
+      <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+        Como o Apache JMeter foi construído em Java, ele precisa que o <strong>Java Runtime Environment (JRE)</strong> ou <strong>JDK (versão 8 ou superior, recomendada 17 ou 21)</strong> esteja instalado no seu computador.
+      </p>
+
+      <!-- TESTE DO JAVA NO TERMINAL -->
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 mb-6">
+        <div class="font-bold text-slate-800 text-xs mb-2">Como testar no seu computador:</div>
+        <p class="text-xs text-slate-600 mb-2">Abra o <strong>PowerShell</strong> ou o <strong>Prompt de Comando (CMD)</strong> e digite:</p>
+        <pre class="bg-slate-900 text-emerald-400 p-3 rounded-lg text-xs font-mono"><code>java -version</code></pre>
+        
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+          <div class="p-3 bg-green-50 border border-green-200 rounded-lg text-green-900">
+            <strong>✅ Se aparecer algo como:</strong><br>
+            <code>openjdk version "17.0.x"</code> ou <code>java version "21.x"</code><br>
+            <span class="text-green-700 font-semibold mt-1 block">Tudo certo! Pode ir direto para a Etapa 2.</span>
+          </div>
+          <div class="p-3 bg-red-50 border border-red-200 rounded-lg text-red-900">
+            <strong>❌ Se aparecer a mensagem:</strong><br>
+            <code>'java' não é reconhecido como um comando interno...</code><br>
+            <span class="text-red-700 font-semibold mt-1 block">Você precisa instalar o Java! Siga abaixo:</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMO INSTALAR O JAVA SE PRECISAR -->
+      <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-4 text-xs text-amber-950 space-y-2">
+        <div class="font-bold text-sm text-amber-900">Como instalar o Java no Windows rapidamente:</div>
+        <ol class="list-decimal ml-5 space-y-1.5 text-slate-700">
+          <li>Acesse <a href="https://adoptium.net/temurin/releases/" target="_blank" class="text-blue-600 font-bold underline">https://adoptium.net/temurin/releases/</a> (Eclipse Temurin - Java Oficial Gratuito).</li>
+          <li>Escolha <strong>Java 17 (LTS)</strong> ou <strong>Java 21 (LTS)</strong> para <strong>Windows x64</strong> e baixe o instalador <strong>.msi</strong>.</li>
+          <li>Abra o arquivo baixado e clique em <em>Avançar ➔ Instalar</em> até concluir.</li>
+          <li>Feche seu terminal e abra novamente para testar <code>java -version</code>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ETAPA 2: BAIXAR O JMETER -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="h-8 w-8 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-base">2</div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Etapa 2: Baixar o arquivo ZIP do Apache JMeter</h2>
+      </div>
+
+      <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+        Acesse a página de downloads da Fundação Apache:
+      </p>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 mb-4 text-xs space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-slate-900 text-sm">Download Oficial do JMeter (v5.6.3):</span>
+          <a href="https://jmeter.apache.org/download_jmeter.cgi" target="_blank" class="text-blue-600 font-bold underline">jmeter.apache.org/download_jmeter.cgi</a>
+        </div>
+        
+        <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg text-blue-900 leading-relaxed">
+          <div class="font-bold mb-1">⚠️ ATENÇÃO NA ESCOLHA DO ARQUIVO:</div>
+          Na seção <strong>Binaries</strong> (Binários), clique no link do arquivo <strong><code>apache-jmeter-5.6.3.zip</code></strong> (ou a versão estável mais recente).<br>
+          <em>Não baixe a seção "Source", pois ela contém apenas código-fonte não compilado.</em>
+        </div>
+      </div>
+    </section>
+
+    <!-- ETAPA 3: DESCOMPACTAR O ZIP -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="h-8 w-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-base">3</div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Etapa 3: Descompactar o arquivo no seu computador</h2>
+      </div>
+
+      <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+        Após o download do arquivo <code>apache-jmeter-5.6.3.zip</code> terminar:
+      </p>
+
+      <ol class="list-decimal ml-5 space-y-3 text-xs text-slate-700">
+        <li class="leading-relaxed">
+          Localize o arquivo baixado na sua pasta <strong>Downloads</strong>.
+        </li>
+        <li class="leading-relaxed">
+          Clique com o <strong>botão direito</strong> no arquivo <code>apache-jmeter-5.6.3.zip</code> e selecione <strong>Extrair Tudo...</strong> (ou <em>Extract All...</em>).
+        </li>
+        <li class="leading-relaxed">
+          Escolha uma pasta de fácil acesso no seu computador.
+          <div class="mt-2 p-2.5 bg-slate-100 rounded-lg border font-mono text-slate-800">
+            <strong>Exemplos recomendados:</strong><br>
+            • <code>C:\jmeter</code><br>
+            • <code>C:\Users\seu_usuario\Downloads\apache-jmeter-5.6.3</code>
+          </div>
+          <span class="text-amber-700 font-semibold mt-1 block">💡 Dica de ouro: Evite extrair dentro de pastas protegidas como <code>C:\Arquivos de Programas</code> para não ter problemas de permissão.</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ETAPA 4: COMO ABRIR E EXECUTAR -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="h-8 w-8 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center font-bold text-base">4</div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Etapa 4: Como Abrir a Interface Gráfica do JMeter</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        
+        <!-- WINDOWS -->
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+          <div class="font-bold text-slate-900 text-sm mb-2 flex items-center gap-1.5">
+            <span>🪟</span> No Windows:
+          </div>
+          <ol class="list-decimal ml-5 space-y-2 text-slate-700">
+            <li>Abra a pasta onde você descompactou o JMeter.</li>
+            <li>Entre na subpasta <code class="bg-slate-200 px-1 py-0.5 rounded font-bold text-slate-900">bin</code>.</li>
+            <li>Procure o arquivo executável <strong class="text-blue-700 font-mono">jmeter.bat</strong> (pode aparecer apenas como <code>jmeter</code> do tipo <em>Arquivo de Lote do Windows</em>).</li>
+            <li>Dê <strong>duplo clique</strong> nele.</li>
+            <li>Uma janela preta do Prompt abrirá (não feche ela!) e, em alguns segundos, a janela oficial do JMeter se abrirá.</li>
+          </ol>
+        </div>
+
+        <!-- LINUX / MAC -->
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+          <div class="font-bold text-slate-900 text-sm mb-2 flex items-center gap-1.5">
+            <span>🍎 🐧</span> No Linux / Mac:
+          </div>
+          <ol class="list-decimal ml-5 space-y-2 text-slate-700">
+            <li>Abra o terminal e navegue até a pasta:
+              <pre class="bg-slate-900 text-emerald-400 p-2 rounded mt-1"><code>cd /caminho/apache-jmeter-5.6.3/bin</code></pre>
+            </li>
+            <li>Dê permissão e execute:
+              <pre class="bg-slate-900 text-emerald-400 p-2 rounded mt-1"><code>chmod +x jmeter.sh
+./jmeter.sh</code></pre>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ETAPA 5: RESOLUÇÃO DE PROBLEMAS -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="h-8 w-8 rounded-lg bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-base">5</div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Dicas e Resolução de Dúvidas Frequentes</h2>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="p-3 bg-slate-50 border rounded-lg">
+          <div class="font-bold text-slate-800 mb-1">❓ O terminal abre e fecha na mesma hora ao clicar em <code>jmeter.bat</code>:</div>
+          <p class="text-slate-600">Isso significa que o Java não está instalado ou o Windows não encontrou o executável do Java. Instale o Java pela Etapa 1 e reinicie o computador.</p>
+        </div>
+
+        <div class="p-3 bg-slate-50 border rounded-lg">
+          <div class="font-bold text-slate-800 mb-1">❓ As letras estão muito pequenas na minha tela:</div>
+          <p class="text-slate-600">No JMeter, clique no menu superior <strong>Options ➔ Zoom In</strong> (ou use atalho <code>Ctrl + +</code>) para aumentar a interface.</p>
+        </div>
+
+        <div class="p-3 bg-slate-50 border rounded-lg">
+          <div class="font-bold text-slate-800 mb-1">❓ Como colocar a interface em Português ou Inglês:</div>
+          <p class="text-slate-600">No menu superior do JMeter, vá em <strong>Options ➔ Choose Language ➔ Portuguese (Brazil)</strong> ou <strong>English</strong>.</p>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-6 border-t border-slate-200 text-center">
+        <a href="/documentacao#exercicio-01" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition">
+          <span>🚀</span> Pronto! Voltar ao Exercício 01 e Configurar o Teste de Carga & Stress
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-xs mt-12 text-center">
+    <p>Sistema Login QA • Laboratório de Desempenho e Qualidade de Software</p>
+  </footer>
+
+</body>
+</html>
